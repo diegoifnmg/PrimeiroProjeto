@@ -1,32 +1,48 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifnmg.ltp3;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- *
- * @author Diego
- */
+
 public class Email{
-    private int idEmail;
+    private int codEmail;
     private String nomeEmail;
 
-    
-    public void setcadastra(int idEmail, String nomeEmail) {
-        this.idEmail = idEmail;
+    public Email(int codEmail, String nomeEmail) {
+        this.codEmail = codEmail;
         this.nomeEmail = nomeEmail;
     }
-    
 
-    
+    public int getIdEmail() {
+        return codEmail;
+    }
+
+    public void setIdEmail(int codEmail) {
+        this.codEmail = codEmail;
+    }
+
+    public String getNomeEmail() {
+        return nomeEmail;
+    }
+
+    public void setNomeEmail(String nomeEmail) {
+        Pattern Email = Pattern.compile("[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+");
+        Matcher busca = Email.matcher(nomeEmail);
+        if(busca.matches()){
+            System.out.println("OK!");
+            this.nomeEmail = nomeEmail;
+        }else{
+            System.out.println("ERRO!");
+        }
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + this.idEmail;
-        hash = 17 * hash + Objects.hashCode(this.nomeEmail);
+        int hash = 5;
+        hash = 89 * hash + this.codEmail;
+        hash = 89 * hash + Objects.hashCode(this.nomeEmail);
         return hash;
     }
 
@@ -39,7 +55,7 @@ public class Email{
             return false;
         }
         final Email other = (Email) obj;
-        if (this.idEmail != other.idEmail) {
+        if (this.codEmail != other.codEmail) {
             return false;
         }
         if (!Objects.equals(this.nomeEmail, other.nomeEmail)) {
@@ -47,4 +63,6 @@ public class Email{
         }
         return true;
     }
+    
+    
 }
