@@ -31,8 +31,8 @@ public class Endereco{
         return codEndereco;
     }
 
-    public void setCodEndereco(int CodEndereco) {
-        this.codEndereco = CodEndereco;
+    public void setCodEndereco(int codEndereco) {
+        this.codEndereco = codEndereco;
     }
 
     public String getRua() {
