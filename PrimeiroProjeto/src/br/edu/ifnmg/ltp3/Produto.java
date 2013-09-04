@@ -1,34 +1,37 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifnmg.ltp3;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- *
- * @author Diego
- */
+
 public class Produto {
-    private int idProduto;
+    private int codProduto;
     private String nomeProduto;
     private Double Preco;
 
-    public int getIdProduto() {
-        return idProduto;
+    public int getCodProduto() {
+        return codProduto;
     }
 
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
+    public void setCodProduto(int codProduto) {
+        this.codProduto = codProduto;
     }
 
     public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    public void setNomeProduto(String produto) {
+        Pattern Produto = Pattern.compile("//w//d{3,50}");
+        Matcher busca = Produto.matcher(produto);
+        if(busca.matches()){
+            System.out.println("OK!");
+            this.nomeProduto = produto;
+        }else{
+            System.out.println("ERRO!");
+        }
     }
 
     public Double getPreco() {
@@ -43,15 +46,11 @@ public class Produto {
         }
         
     }
-    public void cadastraProduto(String nome, Double Preco) {
-        setNomeProduto(nome);
-        setPreco(Preco);
-    }
     
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 11 * hash + this.idProduto;
+        hash = 11 * hash + this.codProduto;
         hash = 11 * hash + Objects.hashCode(this.nomeProduto);
         hash = 11 * hash + Objects.hashCode(this.Preco);
         return hash;
@@ -66,7 +65,7 @@ public class Produto {
             return false;
         }
         final Produto other = (Produto) obj;
-        if (this.idProduto != other.idProduto) {
+        if (this.codProduto != other.codProduto) {
             return false;
         }
         if (!Objects.equals(this.nomeProduto, other.nomeProduto)) {
