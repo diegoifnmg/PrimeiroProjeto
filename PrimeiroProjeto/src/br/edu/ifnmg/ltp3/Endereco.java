@@ -5,32 +5,34 @@
 package br.edu.ifnmg.ltp3;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author Diego
  */
 public class Endereco{
-    private int idEndereco;
+    private int codEndereco;
     private String rua;
     private String bairro;
     private String cidade;
     private int numero;
     //Construtor
-    public Endereco(int idEndereco, String rua, String bairro, String cidade, int numero) {
-        this.idEndereco = idEndereco;
+    public Endereco(int codEndereco, String rua, String bairro, String cidade, int numero) {
+        this.codEndereco = codEndereco;
         this.rua = rua;
         this.bairro = bairro;
         this.cidade = cidade;
         this.numero = numero;
     }
     //Metodos
-    public int getIdEndereco(){
-        return idEndereco;
+    public int getCodEndereco(){
+        return codEndereco;
     }
 
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
+    public void setCodEndereco(int CodEndereco) {
+        this.codEndereco = CodEndereco;
     }
 
     public String getRua() {
@@ -38,7 +40,14 @@ public class Endereco{
     }
 
     public void setRua(String rua) {
-        this.rua = rua;
+        Pattern Rua = Pattern.compile("//w{1,50}");
+        Matcher busca = Rua.matcher(rua);
+        if(busca.matches()){
+            System.out.println("OK!");
+            this.rua = rua;
+        }else{
+            System.out.println("ERRO!");
+        }
     }
 
     public String getBairro() {
@@ -46,7 +55,14 @@ public class Endereco{
     }
 
     public void setBairro(String bairro) {
-        this.bairro = bairro;
+        Pattern Bairro = Pattern.compile("//w{1,50}");
+        Matcher busca = Bairro.matcher(bairro);
+        if(busca.matches()){
+            System.out.println("OK!");
+            this.bairro = bairro;
+        }else{
+            System.out.println("ERRO!");
+        }
     }
 
     public String getCidade() {
@@ -54,7 +70,14 @@ public class Endereco{
     }
 
     public void setCidade(String cidade) {
-        this.cidade = cidade;
+        Pattern Cidade = Pattern.compile("//w{1,50}");
+        Matcher busca = Cidade.matcher(cidade);
+        if(busca.matches()){
+            System.out.println("OK!");
+            this.cidade = cidade;
+        }else{
+            System.out.println("ERRO!");
+        }
     }
 
     public int getNumero() {
@@ -62,7 +85,15 @@ public class Endereco{
     }
 
     public void setNumero(int numero) {
-        this.numero = numero;
+        Pattern Numero = Pattern.compile("[0-9]{1,10}");
+        Matcher busca = Numero.matcher(numero);
+        
+         if(busca.matches()){
+            System.out.println("OK!");
+            this.cidade = cidade;
+        }else{
+            System.out.println("ERRO!");
+        }
     }
     
     
@@ -70,7 +101,7 @@ public class Endereco{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.idEndereco;
+        hash = 71 * hash + this.codEndereco;
         hash = 71 * hash + Objects.hashCode(this.rua);
         hash = 71 * hash + Objects.hashCode(this.bairro);
         hash = 71 * hash + Objects.hashCode(this.cidade);
@@ -87,7 +118,7 @@ public class Endereco{
             return false;
         }
         final Endereco other = (Endereco) obj;
-        if (this.idEndereco != other.idEndereco) {
+        if (this.codEndereco != other.codEndereco) {
             return false;
         }
         if (!Objects.equals(this.rua, other.rua)) {
