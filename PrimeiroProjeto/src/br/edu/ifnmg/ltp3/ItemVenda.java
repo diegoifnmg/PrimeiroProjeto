@@ -15,6 +15,12 @@ public class ItemVenda {
         this.qtd = qtd;
     }
     
+    public double getValorTotalItem()
+    {
+        double total = getQtd() * produto.getPreco();
+        return total;
+    }
+    
     public Produto getProduto() {
         return produto;
     }
