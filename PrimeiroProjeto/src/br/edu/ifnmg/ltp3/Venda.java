@@ -4,6 +4,11 @@
  */
 package br.edu.ifnmg.ltp3;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,83 +18,83 @@ import java.util.Objects;
  * @author Diego
  */
 public class Venda {
-    private int idVenda;
-    private Double valorTotalVenda;
-    private ItemVenda qtdVenda;
-    private Pessoa idPessoa;
-    private List<Produto> produtos;
-    //construtor
-    public Venda(int idVenda, Double valorTotalVenda, Produto idProduto, ItemVenda qtdVenda, Pessoa idPessoa) {
-        this.idVenda = idVenda;
-        this.valorTotalVenda = valorTotalVenda;
-        this.qtdVenda = qtdVenda;
-        this.idPessoa = idPessoa;
-        produtos = new ArrayList<Produto>();
+    private int codigo;
+    private Pessoa cliente;
+    private Double valorTotal;
+    private Date data;
+    private List<ItemVenda> itens;
+
+    public Venda() {
+    
     }
-    //metodos
-    public void addProduto(Produto produto){
-        if(!produtos.contains(produto)){
-            produtos.add(produto);
+
+    public Venda(int codigo, Pessoa cliente, Double valorTotal, Date data) {
+        this.codigo = codigo;
+        this.cliente = cliente;
+        this.valorTotal = valorTotal;
+        this.data = data;
+        itens = new ArrayList<ItemVenda>();
+    }
+   
+    public void addItens(ItemVenda item){
+        if(!itens.contains(item)){
+            itens.add(item);
+            valorTotal += item.getProduto().getPreco() * item.getQtd();
         }
     }
-    
-    
-    
-    public void removeProduto(Produto produto){
-        if(produtos.contains(produto)){
-            produtos.remove(produto);
+    public void removeItens(ItemVenda item){
+        if(itens.contains(item)){
+            itens.remove(item);
+            valorTotal -= item.getProduto().getPreco() * item.getQtd();
         }
     }
-    
-    
-    public int getIdVenda() {
-        return idVenda;
+    public int getCodigo() {
+        return codigo;
+    }
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public void setIdVenda(int idVenda) {
-        this.idVenda = idVenda;
+    public Pessoa getCliente() {
+        return cliente;
     }
 
-    public Double getValorTotalVenda() {
-        return valorTotalVenda;
+    public void setCliente(Pessoa cliente) {
+        this.cliente = cliente;
     }
 
-    public void setValorTotalVenda(Double valorTotalVenda) {
-        this.valorTotalVenda = valorTotalVenda;
+    public Double getValorTotal() {
+        return valorTotal;
     }
 
-    public ItemVenda getQtdVenda() {
-        return qtdVenda;
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public void setQtdVenda(ItemVenda qtdVenda) {
-        this.qtdVenda = qtdVenda;
+    public Date getData() {
+        return data;
     }
 
-    public Pessoa getIdPessoa() {
-        return idPessoa;
+    public void setData(Date data) {
+        this.data = data;
     }
 
-    public void setIdPessoa(Pessoa idPessoa) {
-        this.idPessoa = idPessoa;
+    public List<ItemVenda> getItens() {
+        return itens;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setItens(List<ItemVenda> itens) {
+        this.itens = itens;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + this.idVenda;
-        hash = 37 * hash + Objects.hashCode(this.valorTotalVenda);
-        hash = 37 * hash + Objects.hashCode(this.qtdVenda);
-        hash = 37 * hash + Objects.hashCode(this.idPessoa);
-        hash = 37 * hash + Objects.hashCode(this.produtos);
+        int hash = 7;
+        hash = 29 * hash + this.codigo;
+        hash = 29 * hash + Objects.hashCode(this.cliente);
+        hash = 29 * hash + Objects.hashCode(this.valorTotal);
+        hash = 29 * hash + Objects.hashCode(this.data);
+        hash = 29 * hash + Objects.hashCode(this.itens);
         return hash;
     }
 
@@ -102,25 +107,24 @@ public class Venda {
             return false;
         }
         final Venda other = (Venda) obj;
-        if (this.idVenda != other.idVenda) {
+        if (this.codigo != other.codigo) {
             return false;
         }
-        if (!Objects.equals(this.valorTotalVenda, other.valorTotalVenda)) {
+        if (!Objects.equals(this.cliente, other.cliente)) {
             return false;
         }
-        if (!Objects.equals(this.qtdVenda, other.qtdVenda)) {
+        if (!Objects.equals(this.valorTotal, other.valorTotal)) {
             return false;
         }
-        if (!Objects.equals(this.idPessoa, other.idPessoa)) {
+        if (!Objects.equals(this.data, other.data)) {
             return false;
         }
-        if (!Objects.equals(this.produtos, other.produtos)) {
+        if (!Objects.equals(this.itens, other.itens)) {
             return false;
         }
         return true;
     }
-
     
     
-
+    
 }
