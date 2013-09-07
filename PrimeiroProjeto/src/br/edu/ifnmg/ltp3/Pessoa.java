@@ -1,25 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifnmg.ltp3;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author Diego
- */
+
 public class Pessoa{
-    private int idPessoa;
+    private int codPessoa;
     private String nomePessoa;
     private List<Email> emails;
     private List<Endereco> enderecos;
     //construtor
     public Pessoa(int idPessoa, String nomePessoa) {
-        this.idPessoa = idPessoa;
+        this.codPessoa = idPessoa;
         this.nomePessoa = nomePessoa;
         emails = new ArrayList<Email>();
         enderecos = new ArrayList<Endereco>();
@@ -51,12 +45,12 @@ public class Pessoa{
         }
     }
     
-    public int getIdPessoa() {
-        return idPessoa;
+    public int getCodPessoa() {
+        return codPessoa;
     }
 
-    public void setIdPessoa(int idPessoa) {
-        this.idPessoa = idPessoa;
+    public void setCodPessoa(int codPessoa) {
+        this.codPessoa = codPessoa;
     }
 
     public String getNomePessoa() {
@@ -78,7 +72,7 @@ public class Pessoa{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.idPessoa;
+        hash = 71 * hash + this.codPessoa;
         hash = 71 * hash + Objects.hashCode(this.nomePessoa);
         hash = 71 * hash + Objects.hashCode(this.emails);
         hash = 71 * hash + Objects.hashCode(this.enderecos);
@@ -94,7 +88,7 @@ public class Pessoa{
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        if (this.idPessoa != other.idPessoa) {
+        if (this.codPessoa != other.codPessoa) {
             return false;
         }
         if (!Objects.equals(this.nomePessoa, other.nomePessoa)) {
