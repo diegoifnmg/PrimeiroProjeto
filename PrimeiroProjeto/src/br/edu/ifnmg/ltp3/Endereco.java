@@ -70,7 +70,7 @@ public class Endereco{
             System.out.println("OK!");
             this.cidade = cidade;
         }else{
-            System.out.println("ERRO!");
+            System.err.println("ERRO!");
         }
     }
 
@@ -79,15 +79,7 @@ public class Endereco{
     }
 
     public void setNumero(int numero) {
-        Pattern Numero = Pattern.compile("[0-9]{1,10}");
-        Matcher busca = Numero.matcher(numero);
-        
-         if(busca.matches()){
-            System.out.println("OK!");
-            this.cidade = cidade;
-        }else{
-            System.out.println("ERRO!");
-        }
+        this.numero = numero;
     }
     
     
