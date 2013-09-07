@@ -7,46 +7,37 @@ import java.util.regex.Pattern;
 
 
 public class Email{
-    private int codEmail;
-    private String nomeEmail;
+    //private int codEmail;
+    private String email;
 
-    public Email(int codEmail, String nomeEmail) {
-        this.codEmail = codEmail;
-        this.nomeEmail = nomeEmail;
+    public Email(int codEmail, String email) {
+        //this.codEmail = codEmail;
+        this.email = email;
     }
-
-    public int getIdEmail() {
+    /*
+    public int getCodEmail() {
         return codEmail;
     }
 
-    public void setIdEmail(int codEmail) {
+    public void setCodEmail(int codEmail) {
         this.codEmail = codEmail;
     }
-
+    */
     public String getNomeEmail() {
-        return nomeEmail;
+        return email;
     }
 
-    public void setNomeEmail(String nomeEmail) {
+    public void setNomeEmail(String email) {
         Pattern Email = Pattern.compile("[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+");
-        Matcher busca = Email.matcher(nomeEmail);
+        Matcher busca = Email.matcher(email);
         if(busca.matches()){
             System.out.println("OK!");
-            this.nomeEmail = nomeEmail;
+            this.email = email;
         }else{
             System.out.println("ERRO!");
         }
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + this.codEmail;
-        hash = 89 * hash + Objects.hashCode(this.nomeEmail);
-        return hash;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -55,14 +46,19 @@ public class Email{
             return false;
         }
         final Email other = (Email) obj;
-        if (this.codEmail != other.codEmail) {
-            return false;
-        }
-        if (!Objects.equals(this.nomeEmail, other.nomeEmail)) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         return true;
     }
+
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.email);
+        return hash;
+    }
+
+    
     
     
 }
