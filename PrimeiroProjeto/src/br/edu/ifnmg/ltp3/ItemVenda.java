@@ -1,22 +1,52 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifnmg.ltp3;
 
-/**
- *
- * @author Diego
- */
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 public class ItemVenda {
     private Produto produto;
     private int qtd;
-    private Venda venda;
 
-    public ItemVenda(Produto produto, int qtd, Venda venda) {
+    public ItemVenda(Produto produto, int qtd) {
         this.produto = produto;
         this.qtd = qtd;
-        this.venda = venda;
+    }
+    
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public int getQtd() {
+        return qtd;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.produto);
+        hash = 37 * hash + this.qtd;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ItemVenda other = (ItemVenda) obj;
+        if (!Objects.equals(this.produto, other.produto)) {
+            return false;
+        }
+        if (this.qtd != other.qtd) {
+            return false;
+        }
+        return true;
     }
 
     
