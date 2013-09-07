@@ -7,16 +7,16 @@ import java.util.regex.Pattern;
 
 
 public class Produto {
-    private int codProduto;
+    private int codigo;
     private String nomeProduto;
-    private Double Preco;
+    private Double preco;
 
-    public int getCodProduto() {
-        return codProduto;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodProduto(int codProduto) {
-        this.codProduto = codProduto;
+    public void setCodigo(int codProduto) {
+        this.codigo = codProduto;
     }
 
     public String getNomeProduto() {
@@ -24,7 +24,7 @@ public class Produto {
     }
 
     public void setNomeProduto(String produto) {
-        Pattern Produto = Pattern.compile("//w//d{3,50}");
+        Pattern Produto = Pattern.compile("[\\w\\d]{3,50}");
         Matcher busca = Produto.matcher(produto);
         if(busca.matches()){
             System.out.println("OK!");
@@ -35,14 +35,14 @@ public class Produto {
     }
 
     public Double getPreco() {
-        return Preco;
+        return preco;
     }
 
     public void setPreco(Double Preco) {
         if(Preco <= 0){
             System.out.println("Erro Preço <= 0");
         }else{
-            this.Preco = Preco;
+            this.preco = Preco;
         }
         
     }
@@ -50,9 +50,9 @@ public class Produto {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 11 * hash + this.codProduto;
+        hash = 11 * hash + this.codigo;
         hash = 11 * hash + Objects.hashCode(this.nomeProduto);
-        hash = 11 * hash + Objects.hashCode(this.Preco);
+        hash = 11 * hash + Objects.hashCode(this.preco);
         return hash;
     }
 
@@ -65,13 +65,13 @@ public class Produto {
             return false;
         }
         final Produto other = (Produto) obj;
-        if (this.codProduto != other.codProduto) {
+        if (this.codigo != other.codigo) {
             return false;
         }
         if (!Objects.equals(this.nomeProduto, other.nomeProduto)) {
             return false;
         }
-        if (!Objects.equals(this.Preco, other.Preco)) {
+        if (!Objects.equals(this.preco, other.preco)) {
             return false;
         }
         return true;
