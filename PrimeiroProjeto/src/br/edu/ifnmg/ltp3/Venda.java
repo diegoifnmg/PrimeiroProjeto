@@ -5,13 +5,13 @@
 package br.edu.ifnmg.ltp3;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -21,14 +21,14 @@ public class Venda {
     private int codigo;
     private Pessoa cliente;
     private Double valorTotal;
-    private Date data;
+    private String data;
     private List<ItemVenda> itens;
 
     public Venda() {
     
     }
 
-    public Venda(int codigo, Pessoa cliente, Double valorTotal, Date data) {
+    public Venda(int codigo, Pessoa cliente, Double valorTotal, String data) {
         this.codigo = codigo;
         this.cliente = cliente;
         this.valorTotal = valorTotal;
@@ -71,12 +71,16 @@ public class Venda {
         this.valorTotal = valorTotal;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setData(String data) {
+        Pattern Data = Pattern.compile("\\d{1,31}\\/\\d{1,12}\\/\\d{0,}");
+        Matcher verifica = Data.matcher(data);
+        
+        if(verifica.matches())
+              this.data = data;
     }
 
     public List<ItemVenda> getItens() {
